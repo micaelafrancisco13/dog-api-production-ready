@@ -11,3 +11,20 @@ spring:
   jpa:
     # outputs the SQL statements on the console
     show-sql: true
+
+server:
+  port: 8080
+
+# Exposes only health and info over HTTP (safe default; do not expose everything in prod).
+# Enables probe endpoints so you get:
+#   /actuator/health/liveness
+#   /actuator/health/readiness
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
+  endpoint:
+    health:
+      probes:
+        enabled: true
