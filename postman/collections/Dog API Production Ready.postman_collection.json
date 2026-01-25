@@ -1,0 +1,93 @@
+{
+  "info": {
+    "name": "Dog API Production Ready",
+    "description": "API collection for the Dog API Production Ready Spring Boot application. Includes custom health endpoints and Spring Boot Actuator endpoints.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:8080",
+      "type": "string"
+    }
+  ],
+  "item": [
+    {
+      "name": "Health",
+      "description": "Health check endpoints for monitoring application status",
+      "item": [
+        {
+          "name": "Health Check (healthz)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/healthz",
+              "host": ["{{baseUrl}}"],
+              "path": ["healthz"]
+            },
+            "description": "Simple health check endpoint that returns 'UP' if the application process is responding. Useful for quick sanity checks."
+          }
+        }
+      ]
+    },
+    {
+      "name": "Actuator",
+      "description": "Spring Boot Actuator endpoints for production monitoring and management",
+      "item": [
+        {
+          "name": "Health",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/actuator/health",
+              "host": ["{{baseUrl}}"],
+              "path": ["actuator", "health"]
+            },
+            "description": "Returns the overall health status of the application including all health indicators."
+          }
+        },
+        {
+          "name": "Liveness Probe",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/actuator/health/liveness",
+              "host": ["{{baseUrl}}"],
+              "path": ["actuator", "health", "liveness"]
+            },
+            "description": "Kubernetes liveness probe endpoint. If this returns DOWN, the platform should restart the container."
+          }
+        },
+        {
+          "name": "Readiness Probe",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/actuator/health/readiness",
+              "host": ["{{baseUrl}}"],
+              "path": ["actuator", "health", "readiness"]
+            },
+            "description": "Kubernetes readiness probe endpoint. If this returns DOWN, the application should be removed from traffic but not necessarily restarted."
+          }
+        },
+        {
+          "name": "Info",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/actuator/info",
+              "host": ["{{baseUrl}}"],
+              "path": ["actuator", "info"]
+            },
+            "description": "Returns application information such as build details, git info, and custom info properties."
+          }
+        }
+      ]
+    }
+  ]
+}
