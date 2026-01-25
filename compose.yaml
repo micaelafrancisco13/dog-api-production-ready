@@ -1,1 +1,16 @@
-services: {}
+services:
+  postgres:
+    image: postgres:18
+    container_name: dog-api-production-ready-db
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: dog_api_production_ready_db
+    volumes:
+      - postgres:/var/lib/postgresql
+    ports:
+      - "5433:5432"
+    restart: unless-stopped
+
+volumes:
+  postgres:
