@@ -1,4 +1,4 @@
-package org.example.dogapiproductionready.shared.config;
+package org.example.dogapi.shared.config;
 
 import org.slf4j.Logger;
 import org.springframework.boot.ApplicationArguments;
