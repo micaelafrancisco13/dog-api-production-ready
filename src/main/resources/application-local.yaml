@@ -1,0 +1,13 @@
+app:
+  environment: local
+spring:
+  datasource:
+    host: localhost
+    port: 5433
+    dbname: dog_api_production_ready_db
+    url: jdbc:postgresql://${spring.datasource.host}:${spring.datasource.port}/${spring.datasource.dbname}
+    username: postgres
+    password: password
+  jpa:
+    # outputs the SQL statements on the console
+    show-sql: true
