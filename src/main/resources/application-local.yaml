@@ -1,5 +1,6 @@
 app:
   environment: local
+
 spring:
   datasource:
     host: localhost
@@ -8,6 +9,30 @@ spring:
     url: jdbc:postgresql://${spring.datasource.host}:${spring.datasource.port}/${spring.datasource.dbname}
     username: postgres
     password: password
+
+  flyway:
+    enabled: true
+
   jpa:
-    # outputs the SQL statements on the console
-    show-sql: true
+    hibernate:
+      ddl-auto: validate
+    properties:
+      hibernate:
+        jdbc:
+          time_zone: UTC
+
+management:
+  endpoint:
+    health:
+      show-details: always
+      probes:
+        enabled: true
+      group:
+        readiness:
+          include: readinessState,db
+
+# Why these settings?
+#   ddl-auto: validate is a common best practice when Flyway manages schema (Hibernate should not generate schema in production).
+#   show-details: always is local-only so you can actually see what's happening.
+#   By default, Spring Boot does not include extra external checks (like DB) in readiness probes automatically; you choose what to include.
+#   Spring Boot Actuator exposes readiness/liveness probes and explains how they're derived.
