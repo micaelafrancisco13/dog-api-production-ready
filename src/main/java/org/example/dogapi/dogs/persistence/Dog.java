@@ -23,7 +23,7 @@ public class Dog {
     private String breed;
 
     @Column(name = "age")
-    private int age;
+    private short age;
 
     /**
      * Source of truth: DB default (now()).
@@ -34,13 +34,13 @@ public class Dog {
     @Column(name = "created_at", insertable = false, updatable = false)
     private Instant createdAt;
 
-    public Dog(String name, String breed, int age) {
+    public Dog(String name, String breed, short age) {
         this.name = name;
         this.breed = breed;
         this.age = age;
     }
 
-    public void update(String name, String breed, int age) {
+    public void update(String name, String breed, short age) {
         this.name = name;
         this.breed = breed;
         this.age = age;
