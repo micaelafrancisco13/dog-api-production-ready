@@ -1,6 +1,6 @@
 services:
   postgres:
-    image: postgres:18
+    image: postgres:latest
     container_name: dog-api-production-ready-db
     environment:
       POSTGRES_USER: postgres
